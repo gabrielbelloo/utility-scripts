@@ -1,6 +1,15 @@
 import pandas as pd
 
+#Reads a spreadsheet and return a specific column as a list.
 def read_spreadsheet(file_path, column):
-    """Reads a spreadsheet and return a specific column as a list."""
     df = pd.read_excel(file_path)
-    return df[column].tolist()
+
+    unique_values = set()
+    result = []
+
+    for value in df[column]:
+        if value not in unique_values:
+            unique_values.add(value)
+            result.append(value)
+
+    return result
